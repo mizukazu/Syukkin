@@ -1,18 +1,11 @@
 import axios from "axios";
 import { format } from "date-fns";
-
-export interface EndPoint {
-  name: string;
-  attendances: string;
-  startTime: string;
-  endTime: string;
-}
-export interface ApiResponse {
-  nowDate: string | undefined;
-  message: string;
-}
-export type ApiService = string | undefined;
-export type PostTime = ApiResponse | undefined;
+import {
+  EndPoint,
+  ApiService,
+  // ApiResponse,
+  PostTime,
+} from "./types/apiServices";
 
 export const ENDPOINT: EndPoint = {
   name: "http://localhost:5000/api/name",

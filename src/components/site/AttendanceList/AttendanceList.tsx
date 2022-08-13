@@ -13,16 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { SiteColorEnum } from "../../../utils/siteColorEnum";
 import { getAttendances } from "../../../api/apiServices";
-
-export interface Attendance {
-  attendanceId: string;
-  employeeId: string;
-  startTime: Date;
-  endTime: Date;
-  startRestTime: Date;
-  EndRestTime: Date;
-  restTime: Date;
-}
+import ja from "date-fns/locale/ja";
+import { format } from "date-fns";
+import { Attendance } from "./types/attendanceList";
 
 export const AttendanceList = (): ReactElement => {
   const [attendances, setAttendances] = useState<Attendance[]>([]);
@@ -55,9 +48,22 @@ export const AttendanceList = (): ReactElement => {
           </Tr>
         </Thead>
         <Tbody>
-          {/* {attendances?.map((a, i) => (
-            <React.Fragment key={i}>test</React.Fragment>
-          ))} */}
+          {/* {attendances[0].attendanceId} */}
+          {attendances?.map((a, i) => (
+            <React.Fragment key={i}>
+              <Tr>
+                <Td>
+                  {format(new Date(a.start_time), "M/d(E)", { locale: ja })}
+                </Td>
+                <Td>test{i}</Td>
+                <Td>{a.start_time}</Td>
+                <Td>{a.end_time}</Td>
+                <Td>{a.start_rest_time}</Td>
+                <Td>{a.end_rest_time}</Td>
+                <Td>{a.rest_time}</Td>
+              </Tr>
+            </React.Fragment>
+          ))}
           {/* {[...Array(20)].map((num, i) => (
             <React.Fragment key={i}>
               <Tr>
